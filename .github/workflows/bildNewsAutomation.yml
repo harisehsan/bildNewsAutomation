@@ -8,9 +8,12 @@ on:
 
 jobs:
   run-tests:
-    # This must be your self-hosted runner (on the machine where the phone is plugged in)
     runs-on: self-hosted
     timeout-minutes: 90
+
+    defaults:
+      run:
+        shell: cmd
 
     steps:
       - name: Checkout
@@ -29,11 +32,11 @@ jobs:
           node-version: "20"
 
       - name: Install Appium 2 and UIAutomator2 driver (if not present)
+        shell: bash
         run: |
           if ! command -v appium >/dev/null 2>&1; then
             npm i -g appium
           fi
-          # Install driver once; it's harmless to re-run
           appium driver list --installed | grep -q uiautomator2 || appium driver install uiautomator2
 
       - name: Verify ADB and pick first connected device
@@ -47,10 +50,9 @@ jobs:
           echo "ADB devices:"
           adb devices -l || true
 
-          # Extract first line that ends with 'device' (not 'unauthorized'/'offline')
           UDID=$(adb devices | awk '/device$/{print $1; exit}')
           if [ -z "$UDID" ]; then
-            echo "No ready Android device found (need exactly one listed as 'device')." >&2
+            echo "No ready Android device found (need a device listed as 'device')." >&2
             exit 1
           fi
 
@@ -64,9 +66,9 @@ jobs:
           echo "Detected $DEVICE_MODEL (Android $ANDROID_VERSION)"
 
       - name: Start Appium server (background)
+        shell: bash
         run: |
           nohup appium --allow-insecure chromedriver_autodownload --base-path /wd/hub --log appium.log >/dev/null 2>&1 &
-          # Wait for port 4723 to be ready
           for i in {1..60}; do
             if (echo > /dev/tcp/127.0.0.1/4723) >/dev/null 2>&1; then
               echo "Appium is up."
@@ -80,21 +82,17 @@ jobs:
             exit 1
           fi
 
+      # 👇 Defaults to cmd now, so no PowerShell script => no policy error
       - name: Run tests (tag @bild_news_login)
         env:
-          # Common vars your code might read; adjust if your test picks these up
           DEVICE_UDID: ${{ env.DEVICE_UDID }}
           ANDROID_VERSION: ${{ env.ANDROID_VERSION }}
           DEVICE_MODEL: ${{ env.DEVICE_MODEL }}
-        run: |
-          # Your code already auto-picks the first device; if you also accept -D flags, they’re here:
-          mvn -B clean test \
-            -Dcucumber.filter.tags='@bild_news_login'
+        run: mvn -B clean test -Dcucumber.filter.tags="@bild_news_login"
 
       - name: Generate Allure report
         if: always()
-        run: |
-          mvn -B io.qameta.allure:allure-maven:report || true
+        run: mvn -B io.qameta.allure:allure-maven:report || exit /b 0
 
       - name: Upload Allure results (raw)
         if: always()
