@@ -1,0 +1,6 @@
+/target/
+.*
+!/.gitignore
+/.idea/
+/.allure/
+/videos/
