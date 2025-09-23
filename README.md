@@ -47,33 +47,43 @@ I developed the test framework from scratch using the following framework/tools:
 
 ### Pre-requisites for the execution locally
 
-Install JDK (Java Development Kit) latest version. For an OS like Windows, the environment variable must be set after installation. Then run the following command in the CMD/Terminal to ensure that the Java version is showing correctly:
+1. Install JDK (Java Development Kit) latest version. For an OS like Windows, the environment variable must be set after installation. Then run the following command in the CMD/Terminal to ensure that the Java version is showing correctly:
+
 `java -version`
 
-Install Apache Maven latest version. For an OS like Windows, the environment variable must be set after installation. Then run the following command in CMD/Terminal to ensure that the Maven version is showing correctly:
+2. Install Apache Maven latest version. For an OS like Windows, the environment variable must be set after installation. Then run the following command in CMD/Terminal to ensure that the Maven version is showing correctly:
+
 `mvn -v`
 
-Install Node.js. Then run the following command to check the version.
+3. Install Node.js. Then run the following command to check the version.
+
 `node -v`
+
 `npm -v`
 
-Install Appium server 2 by using the command `npm i -g appium`. Then run the following command to check that the Appium version is showing correctly:
+4. Install Appium server 2 by using the command `npm i -g appium`. Then run the following command to check that the Appium version is showing correctly:
+
 `appium -v`
 
-Install the UI Automator 2 by using the following command:
+5. Install the UI Automator 2 by using the following command:
+
 `appium driver install uiautomator2`
 
-Install Android SDK Manager and in the SDK Manager install:
-Android SDK Platform (for the API level you’ll test)
-Android SDK Platform-Tools (gives you adb)
+6. Install Android SDK Manager and in the SDK Manager install:
+ - Android SDK Platform (for the API level you’ll test)
+ - Android SDK Platform-Tools (gives you adb)
 
-Set the environment variables like ANDROID_HOME (or ANDROID_SDK_ROOT) to your SDK path and add these to your PATH:
+7. Set the environment variables like ANDROID_HOME (or ANDROID_SDK_ROOT) to your SDK path and add these to your PATH:
+
 `$ANDROID_HOME/platform-tools`
+
 `$ANDROID_HOME/tools and $ANDROID_HOME/tools/bin`
-Install the Bild News app from playstore in the Android Mobile.
-Connect that Android phone to the Laptop, Computer, or MacBook via cable.
-Run the command in CMD/Terminal `adb devices`. Make sure that the connected device UDID is shown.
-Clone the project from my GitHub repo using the following command:
+
+8. Install the Bild News app from playstore in the Android Mobile.
+9. Connect that Android phone to the Laptop, Computer, or MacBook via cable.
+10. Run the command in CMD/Terminal `adb devices`. Make sure that the connected device UDID is shown.
+11. Clone the project from my GitHub repo using the following command:
+
 `git clone https://github.com/harisehsan/bildNewsAutomation.git`
 
 – Note: In the case of not getting the version by running the command. Need to troubleshoot the problem and reinstall them properly. However, you can skip the step(s) if installed or configured already. 
@@ -81,29 +91,39 @@ Clone the project from my GitHub repo using the following command:
  
 ### Execution Steps
 
-Open a terminal/CMD and run the following command to start the Appium server:
+1. Open a terminal/CMD and run the following command to start the Appium server:
+
 `appium`
-Open a new terminal tab, Go to the cloned project repository in the terminal/CMD, and run the following command: 
+
+2. Open a new terminal tab, Go to the cloned project repository in the terminal/CMD, and run the following command: 
+
 `dir` (in Windows CMD) 
+
 `ls -a` (in the terminal of Mac/Linux)
-By running the above command, if you get the file `pom.xml`, it shows that you are in the right directory. Otherwise, use the `cd` command to go to the clone repository.  
+
+3. By running the above command, if you get the file `pom.xml`, it shows that you are in the right directory. Otherwise, use the `cd` command to go to the clone repository.  
 To run the tests, execute the following command:
+
 `mvn clean test -Dcucumber.filter.tags="@bild_news_login" allure:serve`
 
 ### Execution in GitHub Actions CI
 I have configured it to run in GitHub Actions using a self-hosted runner, because my Android device is connected to my local machine. 
 
-Connect the Android phone to a local PC/MacBook.
-Run the Appium server.
-Configure the self-hosted runner. Please go to the following page to get more information on how to configure it with respect to the OS:
+1. Connect the Android phone to a local PC/MacBook.
+2. Run the Appium server.
+3. Configure the self-hosted runner. Please go to the following page to get more information on how to configure it with respect to the OS:
+
 `https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/add-runners`
-After configuring the self-hosted runner. Run the command `./run` to execute the self-hosted runner.
-Go to the link: `https://github.com/harisehsan/bildNewsAutomation/actions/workflows/bildNewsAutomation.yml`  
-Click on the `Run Workflow` button to start the test execution in CI pipelines. 
+
+4. After configuring the self-hosted runner. Run the command `./run` to execute the self-hosted runner.
+
+5. Go to the link: `https://github.com/harisehsan/bildNewsAutomation/actions/workflows/bildNewsAutomation.yml`  
+
+6. Click on the `Run Workflow` button to start the test execution in CI pipelines. 
 
 ### Flakiness mitigation
 
-I faced the issue that when I entered the credentials for login in the text box, the login button enabling takes a little bit so I used fluent wait of Appium to handle it perfectly. The fluent wait looks for the element, like the login button become enabled, then it performs the clicking.
+- I faced the issue that when I entered the credentials for login in the text box, the login button enabling takes a little bit so I used fluent wait of Appium to handle it perfectly. The fluent wait looks for the element, like the login button become enabled, then it performs the clicking.
 
 
 ### I developed the automation tests using
