@@ -105,7 +105,8 @@ I developed the test framework from scratch using the following framework/tools:
 `ls -a` (in the terminal of Mac/Linux)
 
 3. By running the above command, if you get the file `pom.xml`, it shows that you are in the right directory. Otherwise, use the `cd` command to go to the clone repository.  
-To run the tests, execute the following command:
+
+4. To run the tests, execute the following command:
 
 `mvn clean test -Dcucumber.filter.tags="@bild_news_login" allure:serve`
 
