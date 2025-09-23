@@ -11,12 +11,9 @@ import util.BaseDriver;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,8 +33,7 @@ public class Hooks extends BaseDriver {
         this.base = base;
     }
 
-
-    private static List<String> runCmd(String... cmd) throws Exception {
+    private List<String> runCmd(String... cmd) throws Exception {
         Process p = new ProcessBuilder(cmd).redirectErrorStream(true).start();
         List<String> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {

@@ -2,6 +2,7 @@ package Pages;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import pageObject.BildHomePageObject;
 import pageObject.BildLoginPageObject;
 import util.HelperMethods;
 
@@ -11,24 +12,26 @@ import java.time.Duration;
 public class BildLoginPage extends HelperMethods {
     AndroidDriver androidDriver;
     BildLoginPageObject bildLoginPageObject = new BildLoginPageObject();
+    BildHomePageObject bildHomePageObject = new BildHomePageObject();
 
     public BildLoginPage(AndroidDriver androidDriver) {
         this.androidDriver = androidDriver;
         PageFactory.initElements(androidDriver, bildLoginPageObject);
+        PageFactory.initElements(androidDriver, bildHomePageObject);
         androidDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     public void navigateToHomeScreen() {
-        bildLoginPageObject.acceptCondition().click();
-        bildLoginPageObject.furtherBtn().click();
-        bildLoginPageObject.skipBtn().click();
-        bildLoginPageObject.skipBtn2().click();
-        bildLoginPageObject.noThanksBtn().click();
+        bildHomePageObject.acceptCondition().click();
+        bildHomePageObject.furtherBtn().click();
+        bildHomePageObject.skipBtn().click();
+        bildHomePageObject.skipBtn2().click();
+        bildHomePageObject.noThanksBtn().click();
     }
 
     public void gotoLoginPage()
     {
-        bildLoginPageObject.moreLbl().click();
+        bildHomePageObject.moreLbl().click();
         bildLoginPageObject.myAccountLbl().click();
         bildLoginPageObject.loginBtn().click();
     }
@@ -56,6 +59,4 @@ public class BildLoginPage extends HelperMethods {
     {
         return bildLoginPageObject.cannotLogintxtView();
     }
-
-
 }

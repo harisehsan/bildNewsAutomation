@@ -7,30 +7,6 @@ import static util.BaseDriver.androidDriver;
 
 public class BildLoginPageObject {
 
-    public WebElement acceptCondition()
-    {
-        return androidDriver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().text(\"Alle akzeptieren\")"));
-    }
-    public WebElement furtherBtn() {
-        return androidDriver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().text(\"WEITER\")"));
-    }
-
-    public WebElement skipBtn() {
-        return androidDriver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"js-submit-button\")"));
-    }
-
-    public WebElement skipBtn2() {
-        return androidDriver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().textContains(\"BERSPRINGEN\")"));
-    }
-    public WebElement noThanksBtn() {
-        return androidDriver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().text(\"NEIN, DANKE\")"));
-    }
-
-    public WebElement moreLbl()
-    {
-        return androidDriver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().text(\"Mehr\")"));
-    }
-
     public WebElement myAccountLbl()
     {
         return androidDriver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().text(\"Mein Konto\")"));
