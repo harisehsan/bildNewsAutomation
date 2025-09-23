@@ -39,15 +39,23 @@ I developed the test framework from scratch using the following framework/tools:
 ### Project Structure
 
 1. The file `BildNews.feature`, which is the cucumber feature file in the directory `src/test/java/features/`, defines the Gherkin steps (in English) for the tests.
+
 2. The file `BildLoginSteps.java` is the step definition file in the directory `src/test/java/stepdefinitions/`. It is used to link the cucumber feature file with the Java page classes to define the Programming for the Gherkin steps. Moreover, the test assertions checks are defined in that file.
+
 3. The file  `BildLoginPage.java`, which is the Page file in the directory `src/test/java/Pages/`. This page file contains the actual programming-based methods that perform the test automation tasks, such as clicks/taps and sendKeys, etc., on page locators. Additionally, the dynamic waits, such as implicit and fluent waits, are also called in that class. 
+
 4. The files `BildHomePageObject.java` and `BildLoginPageObject.java` in the directory `src/test/java/pageObject`. These Java classes are used to contain the Page locators that are used in the page class file to perform UI automation tasks. These class files are important to manage the page object model (POM) design pattern.
+
 5. The file `Hooks.java` is in the directory `src/test/java/stepdefinitions/`. This contains `Before` and `After` blocks. 
- - The block before contains the desired capabilities execution to launch the Bild news app on the connected Android device. The device detection will be done automatically. But the Bild News app must be installed on the app. It also starts the video recording for the automated test execution before the test execution.
- - The After block is used to stop video recording and attach it to the allure report. For failed scenarios only, it takes the screenshot and attaches it to the allure report. Finally, it quit the running Android driver after the test execution.
+  - The block before contains the desired capabilities execution to launch the Bild news app on the connected Android device. The device detection will be done automatically. But the Bild News app must be installed on the app. It also starts the video recording for the automated test execution before the test execution.
+  - The After block is used to stop video recording and attach it to the allure report. For failed scenarios only, it takes the screenshot and attaches it to the allure report. Finally, it quit the running Android driver after the test execution.
+
 6 . The file `BaseDriver.java` in the directory `src/test/java/util/` is used to define the Android driver. The file `HelperMethods.java` in the same directory as mentioned above is used to implement methods such as fluent waits that are Page class file, but it can be reused in the same or other page classes as the project grows.
+
 7. The file `RunTest.java` in the `src/test/java/runConfig/` is used to define the execution configurations for the Cucumber-based framework.
+
 8. The file `pom.xml` in the root directory contains external dependencies for managing the project.
+
 9. The directories, such as `target` for the report, `screenshots` for the screenshot files, and `videos` for the execution video files, are created dynamically when the tests are executed locally.  
 
 
