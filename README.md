@@ -4,17 +4,23 @@ As per the given requirements in the Mobile Test challenge document. I have deve
 
 The first scenario verifies that the login functionality works correctly and that the user can log in when using the correct credentials.  The automation covers navigating to the login screen, entering the correct credentials, and clicking the login button. The test verifies that the text on the logged-in screen `Eingeloggt als <User email address>` is displayed to make the test scenario pass; if not, then fail it. The steps for this scenario are:
 
- Given I navigated to the Bild News Home screen
- And I go to the Login screen
- When I perform a login using the correct credentials `<Email>` and `<Password>`
- Then I should be logged as `<Email>`
+1. Given I navigated to the Bild News Home screen
+ 
+2. And I go to the Login screen
+ 
+3. When I perform a login using the correct credentials `<Email>` and `<Password>`
+ 
+4. Then I should be logged as `<Email>`
 
 The second scenario verifies that a login error should be displayed when the user performs a login with incorrect credentials.  The automation covers navigating to the login screen, entering the wrong credentials, and clicking the login button. The test verifies that the text on the screen `Die E-Mail-Adresse oder Passwort wurden nicht korrekt eingegeben.` is displayed to make the test scenario pass; if not, then fail it. The steps for this scenario are:
 
-Given I navigated to the Bild News Home screen
-And I goto the Login screen
-When I perform login using incorrect credentials `<Email>` and `<Wrong password>`
- Then I should see login error message
+1. Given I navigated to the Bild News Home screen
+
+2. And I goto the Login screen
+
+3. When I perform login using incorrect credentials `<Email>` and `<Wrong password>`
+
+4. Then I should see login error message
 
 ### Framework Architecture
 
