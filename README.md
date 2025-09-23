@@ -80,8 +80,11 @@ I developed the test framework from scratch using the following framework/tools:
 `$ANDROID_HOME/tools and $ANDROID_HOME/tools/bin`
 
 8. Install the Bild News app from playstore in the Android Mobile.
+
 9. Connect that Android phone to the Laptop, Computer, or MacBook via cable.
+
 10. Run the command in CMD/Terminal `adb devices`. Make sure that the connected device UDID is shown.
+
 11. Clone the project from my GitHub repo using the following command:
 
 `git clone https://github.com/harisehsan/bildNewsAutomation.git`
@@ -129,6 +132,7 @@ I have configured it to run in GitHub Actions using a self-hosted runner, becaus
 ### I developed the automation tests using
 
 PC: Windows 11
+
 Mobile Device: Samsung A12 / OS: 13 (Android)
 
 
